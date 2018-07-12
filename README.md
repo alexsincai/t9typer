@@ -1,2 +1,3 @@
-# t9typer
-T9 keyboard converter
+# T9 typer
+
+T9 keyboard converter, because kids these days have no idea what a pain it was to type a simple message back in the day...
