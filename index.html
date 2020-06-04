@@ -1,85 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>T9 typer</title>
-  <style>
-    body, fieldset, legend, textarea { box-sizing: border-box; }
-    body {
-	color: red;
-      margin: 0;
-      padding: 1em;
-      font: 16px/1.5 sans-serif;
-      display: grid;
-      grid-gap: 1em;
-      height: calc(100vh - 3em);
-      width: calc(100vw - 2em);
-    }
-    fieldset {
-      margin: 0;
-      padding: 0;
-      border: 0;
-    }
-    legend { margin: 0 0 .5em 0; }
-    textarea {
-      border: 0;
-      padding: .5em;
-      width: 100%;
-      height: calc(100% - 2.5em);
-      outline: 0;
-    }
-  </style>
-</head>
-<body>
-  <fieldset>
-    <legend>To type...</legend>
-    <textarea id="input" autofocus="true"></textarea>
-  </fieldset>
-  <fieldset>
-    <legend>...on a T9 keyboard, you would input...</legend>
-    <textarea id="output"></textarea>
-  </fieldset>
-  <script>
-  const input = document.getElementById('input');
-  const output = document.getElementById('output');
-
-  const convert = ( string = '' ) => {
-    const values = [
-      [ ' ' ],
-      [ ',', '.', '?', '!' ],
-      [ 'a', 'b', 'c' ],
-      [ 'd', 'e', 'f' ],
-      [ 'g', 'h', 'i' ],
-      [ 'j', 'k', 'l' ],
-      [ 'm', 'n', 'o' ],
-      [ 'p', 'q', 'r', 's' ],
-      [ 't', 'u', 'v' ],
-      [ 'w', 'x', 'y', 'z' ],
-    ];
-    return string.split( '' ).map( c => {
-      c = c.toLowerCase();
-      let key;
-      let out;
-      const arr = values.find( ( v, i ) => {
-        if ( v.indexOf( c ) !== -1 ) {
-          key = i;
-          return true;
-        }
-        return false;
-      } );
-      let idx = arr.indexOf( c ) + 1;
-      if ( key !== undefined && idx !== 0 ) {
-        out = Array( idx ).fill( key );
-        return out.join( '' );
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>T9 typer</title>
+    <style>
+      body,
+      fieldset,
+      legend,
+      textarea {
+        box-sizing: border-box;
       }
-    } ).join(' ');
-  };
+      body {
+        color: #3355ff;
+        margin: 0;
+        padding: 1em;
+        font: 16px/1.5 sans-serif;
+        display: grid;
+        grid-gap: 1em;
+        height: calc(100vh - 3em);
+        width: calc(100vw - 2em);
+      }
+      fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      legend {
+        margin: 0 0 0.5em 0;
+      }
+      textarea {
+        border: 0;
+        padding: 0.5em;
+        width: 100%;
+        height: calc(100% - 2.5em);
+        outline: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <fieldset>
+      <legend>To type...</legend>
+      <textarea id="input" autofocus="true"></textarea>
+    </fieldset>
+    <fieldset>
+      <legend>...on a T9 keyboard, you would input...</legend>
+      <textarea id="output"></textarea>
+    </fieldset>
+    <script>
+      const input = document.getElementById("input");
+      const output = document.getElementById("output");
 
-  input.addEventListener( 'input', ( e ) => {
-    output.innerText = convert( e.target.value );
-  } );
-  </script>
-</body>
+      const convert = (string = "") => {
+        const values = [
+          [" "],
+          [",", ".", "?", "!"],
+          ["a", "b", "c"],
+          ["d", "e", "f"],
+          ["g", "h", "i"],
+          ["j", "k", "l"],
+          ["m", "n", "o"],
+          ["p", "q", "r", "s"],
+          ["t", "u", "v"],
+          ["w", "x", "y", "z"],
+        ];
+        return string
+          .split("")
+          .map((c) => {
+            c = c.toLowerCase();
+            let key;
+            let out;
+            const arr = values.find((v, i) => {
+              if (v.indexOf(c) !== -1) {
+                key = i;
+                return true;
+              }
+              return false;
+            });
+            let idx = arr.indexOf(c) + 1;
+            if (key !== undefined && idx !== 0) {
+              out = Array(idx).fill(key);
+              return out.join("");
+            }
+          })
+          .join(" ");
+      };
+
+      input.addEventListener("input", (e) => {
+        output.innerText = convert(e.target.value);
+      });
+    </script>
+  </body>
 </html>
